@@ -1,13 +1,15 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 
 const Usuario = require("./controllers/usuarios.controller");
 
 const routes = express.Router();
+const jsonParser = express.json();
 
-routes.get("/home", function (req, res) {
+routes.get("/", function (req, res) {
   res.json({ message: "Ohayo Sekai" });
 });
-routes.post("/api/usuarios", bodyParser.json(), Usuario.create);
+routes.get("/api/usuarios", Usuario.index);
+routes.get("/api/usuarios.details/:_id", Usuario.details);
+routes.post("/api/usuarios", jsonParser, Usuario.create);
 
 module.exports = routes;
