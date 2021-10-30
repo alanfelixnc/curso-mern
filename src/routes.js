@@ -11,5 +11,6 @@ routes.get("/", function (req, res) {
 routes.get("/api/usuarios", Usuario.details);
 routes.get("/api/usuarios/:_id", Usuario.details);
 routes.post("/api/usuarios", jsonParser, Usuario.create);
+routes.delete("/api/usuarios/:_id", Usuario.remove);
 
 module.exports = routes;
