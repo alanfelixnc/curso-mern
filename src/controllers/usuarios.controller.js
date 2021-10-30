@@ -13,7 +13,6 @@ const details = async function (req, res) {
 
 const create = async function (req, res) {
   const { nome_usuario, email_usuario, tipo_usuario, senha_usuario } = req.body;
-
   let data = {};
   let user = await Usuario.findOne({ email_usuario });
   if (!user) {
@@ -36,8 +35,22 @@ const remove = async function (req, res) {
   return res.json(user);
 };
 
+const update = async function (req, res) {
+  const { _id, nome_usuario, email_usuario, senha_usuario, tipo_usuario } =
+    req.body;
+  const data = {
+    nome_usuario,
+    email_usuario,
+    senha_usuario,
+    tipo_usuario,
+  };
+  const user = await Usuario.findOneAndUpdate({ _id }, data, { new: true });
+  return res.json(user);
+};
+
 module.exports = {
   details,
   create,
   remove,
+  update,
 };
