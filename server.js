@@ -1,13 +1,15 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const path = require("path");
-const mongoose = require("mongoose");
+import express, { json } from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import path from "path";
+import { connect } from "mongoose";
+
+import routes from "./src/routes";
 
 const app = express();
 const port = process.env.port || 5000;
 
-mongoose.connect(
+connect(
   "mongodb://localhost:27017/curso-basico-mern",
   {
     useUnifiedTopology: true,
@@ -22,13 +24,11 @@ mongoose.connect(
   }
 );
 
+app.use(routes);
+
 app.use(cors());
 app.use(cookieParser());
-app.use(express.json());
-
-app.get("/home", function (req, res) {
-  res.json({ message: "Ohayo Sekai" });
-});
+app.use(json());
 
 app.listen(port, function () {
   console.log(`Server running on port ${port}`);
