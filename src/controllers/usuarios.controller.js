@@ -5,6 +5,6 @@ const create = function (req, res) {
   });
 };
 
-export default {
+module.exports = {
   create,
 };

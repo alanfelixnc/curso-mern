@@ -1,9 +1,9 @@
-import { Router } from "express";
+const express = require("express");
 
-const routes = Router();
+const routes = express.Router();
 
 routes.get("/home", function (req, res) {
   res.json({ message: "Ohayo Sekai" });
 });
 
-export default routes;
+module.exports = routes;
