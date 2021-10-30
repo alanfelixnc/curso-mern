@@ -8,8 +8,8 @@ const jsonParser = express.json();
 routes.get("/", function (req, res) {
   res.json({ message: "Ohayo Sekai" });
 });
-routes.get("/api/usuarios", Usuario.index);
-routes.get("/api/usuarios.details/:_id", Usuario.details);
+routes.get("/api/usuarios", Usuario.details);
+routes.get("/api/usuarios/:_id", Usuario.details);
 routes.post("/api/usuarios", jsonParser, Usuario.create);
 
 module.exports = routes;

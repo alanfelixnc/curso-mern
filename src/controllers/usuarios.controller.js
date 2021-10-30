@@ -6,9 +6,13 @@ const index = async function (req, res) {
 };
 
 const details = async function (req, res) {
-  console.log(req.params);
   const { _id } = req.params;
-  const user = await Usuario.findOne({ _id });
+  let user = null;
+  if (_id) {
+    user = await Usuario.findOne({ _id });
+  } else {
+    user = await Usuario.find();
+  }
   return res.json(user);
 };
 
